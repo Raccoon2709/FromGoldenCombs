@@ -19,7 +19,7 @@ namespace FromGoldenCombs.Blocks.Langstroth
             BELangstrothStack belangstrothstack = world.BlockAccessor.GetBlockEntity(blockSel.Position) as BELangstrothStack;
             if (belangstrothstack != null) return belangstrothstack.OnInteract(byPlayer);
             
-            return base.OnBlockInteractStart(world, byPlayer, blockSel);
+            return base.OnBlockInteractContinue(world, byPlayer, blockSel);
         }
 
     }

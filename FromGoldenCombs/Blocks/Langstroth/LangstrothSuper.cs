@@ -30,9 +30,13 @@ namespace FromGoldenCombs.Blocks
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
-
-            BELangstrothSuper belangstrothsuper = world.BlockAccessor.GetBlockEntity(blockSel.Position) as BELangstrothSuper;
-            if (belangstrothsuper != null) return belangstrothsuper.OnInteract(byPlayer, blockSel);
+            ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
+            System.Diagnostics.Debug.WriteLine("Checkpoint Alpha-Super Reached");
+            if (slot.Empty || slot.Itemstack?.Item?.FirstCodePart() == "beeframe") {
+                BELangstrothSuper belangstrothsuper = world.BlockAccessor.GetBlockEntity(blockSel.Position) as BELangstrothSuper;
+                if (belangstrothsuper != null) return belangstrothsuper.OnInteract(byPlayer, blockSel);
+                return true;
+            }
 
             return base.OnBlockInteractStart(world, byPlayer, blockSel);
         }

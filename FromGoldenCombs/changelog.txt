@@ -2,11 +2,22 @@
 - Add Config File to control Wildhive and Skep hivepop times.
 - Set skeps and wild hives to only swarm in spring
 
-1.15.6-v1.2.1
+1.15.7-v1.2.0
 - Langstroth Hive
 	- Add Langstroth Super
 	- Add Langstroth Brood Box
 	- Add Langstroth Base
+	(Added but non-functional)
+
+1.15.7-v.1.2.1
+- Langstroth Hive Functionality
+	- Use LangstrothStack as storage for hive components.
+		- Cannot place pieces on top of a brood box
+	- Langstroth stack becomes functioning hive
+		- if top box is a Brood Box with colony and bottom of stack is a base, provided that:
+			- There is nothing but supers between the brood box and the hive base
+			- There are no more than 4 supers between the brood box and the hive base.
+	- Removing the colonized brood box deactivates the hive
 
 Upcoming
  - Add config for changing swarm seasons

@@ -49,6 +49,7 @@ namespace FromGoldenCombs.BlockEntities
         
         internal bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
         {
+            System.Diagnostics.Debug.WriteLine("Checkpoint Alpha-BELangstrothSuper");
             ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
             CollectibleObject colObj = slot.Itemstack?.Collectible;
             bool isBeeframe = colObj?.Attributes != null && colObj.Attributes["beeframe"].AsBool(false) == true;
@@ -84,20 +85,6 @@ namespace FromGoldenCombs.BlockEntities
                 Api.World.BlockAccessor.SetBlock(0, blockSel.Position);
                 MarkDirty(true);
                 return true;        
-            }
-            else if (   //byPlayer.Entity.Controls.Sneak &&
-                        !slot.Empty && 
-                        slot.Itemstack.Block is LangstrothSuper &&
-                        slot.Itemstack.Collectible.Variant["open"]  == "closed" &&
-                        this.Block.Variant["open"]=="closed")
-            {
-                
-                ItemStack super = block.OnPickBlock(Api.World, blockSel.Position);
-                Api.World.BlockAccessor.SetBlock(Api.World.GetBlock(new AssetLocation("fromgoldencombs", "langstrothstack-two-"+GetSide(block))).BlockId, blockSel.Position);
-                BELangstrothStack lStack = (BELangstrothStack)Api.World.BlockAccessor.GetBlockEntity(blockSel.Position);
-                lStack.InitializePut(super, slot);
-                MarkDirty(true);
-                return true;
             }
             else if (this.Block.Variant["open"] == "open" && !byPlayer.Entity.Controls.Sneak)
             {
